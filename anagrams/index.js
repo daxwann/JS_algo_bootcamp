@@ -32,6 +32,4 @@ function anagrams(stringA, stringB) {
   return Object.values(charMap).every(count => count === 0);
 }
 
-anagrams("hello", "olleh");
-
 module.exports = anagrams;
