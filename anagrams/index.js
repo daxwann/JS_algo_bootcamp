@@ -12,7 +12,6 @@ function anagrams(stringA, stringB) {
   let charMap = {};
   const lowerCaseStrA = stringA.toLowerCase();
   const lowerCaseStrB = stringB.toLowerCase();
-  debugger
 
   for (let char of lowerCaseStrA) {
     if (char.match(/[a-z]/)) {
