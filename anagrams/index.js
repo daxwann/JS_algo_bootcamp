@@ -32,4 +32,14 @@ function anagrams(stringA, stringB) {
   return Object.values(charMap).every(count => count === 0);
 }
 
+// solution 2
+
+// function anagrams(stringA, stringB) {
+//   return cleanString(stringA) === cleanString(stringB);
+// }
+
+// function cleanString(str) {
+//   return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+// }
+
 module.exports = anagrams;
