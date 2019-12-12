@@ -24,6 +24,24 @@
 
 const Queue = require('./queue');
 
-function weave(sourceOne, sourceTwo) {}
+// iterative approach -- runtime O(n)
+function weave(sourceOne, sourceTwo) {
+  let weavedQueue = new Queue();
+
+  while (sourceOne.peek() && sourceTwo.peek()) {
+    weavedQueue.add(sourceOne.remove());
+    weavedQueue.add(sourceTwo.remove());
+  }
+
+  while (sourceOne.peek()) {
+    weavedQueue.add(sourceOne.remove());
+  }
+
+  while (sourceTwo.peek()) {
+    weavedQueue.add(sourceTwo.remove());
+  }
+
+  return weavedQueue;
+}
 
 module.exports = weave;
