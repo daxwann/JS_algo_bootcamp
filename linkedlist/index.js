@@ -70,14 +70,14 @@ class LinkedList {
     }
 
     // if list has one node
-    if (currNode.next === null) {
+    if (currNode === this.tail) {
       this.head = null;
       this.tail = null;
       return null;
     }
 
     // for list with two or more nodes
-    while (currNode && currNode.next && currNode.next.next) {
+    while (currNode.next != this.tail) {
       currNode = currNode.next;
     }
 
@@ -91,6 +91,14 @@ class LinkedList {
   insertLast(data) {
     let newNode = new Node(data, null);
 
+		// for empty list
+		if (!this.head) {
+			this.head = newNode;
+			this.tail = newNode;
+			return newNode;
+		}
+
+		// for list with one or more nodes
     if (this.tail) {
       this.tail.next = newNode;
       this.tail = newNode;
@@ -104,15 +112,16 @@ class LinkedList {
   getAt(idx) {
     let currNode = this.head;
 
-    for (let i = 0; i < idx; i++) {
-      if (!currNode) {
-        return null;
-      }
+    while (idx > 0) {
+			if (!currNode) {
+				return null;
+			}
 
-      currNode = currNode.next;
-    }
+			currNode = currNode.next;
+			idx--;
+		}
 
-    return currNode;
+		return currNode 
   }
 }
 
