@@ -12,6 +12,22 @@
 //   c.next = b;
 //   circular(l) // true
 
-function circular(list) {}
+const { Node, LinkedList } = require("./linkedlist");
+
+function circular(list) {
+  let slowPt = list.head;
+  let fastPt = list.head;
+
+  while (slowPt && fastPt && fastPt.next) {
+    slowPt = slowPt.next;
+    fastPt = fastPt.next.next;
+
+    if (slowPt === fastPt) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 module.exports = circular;
