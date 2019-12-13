@@ -3,7 +3,7 @@
 // See 'directions' document
 
 class Node {
-  constructor(input, node) {
+  constructor(input, node = null) {
     this.data = input;
     this.next = node;
   }
@@ -121,7 +121,65 @@ class LinkedList {
 			idx--;
 		}
 
-		return currNode 
+    if (idx === 0) {
+      return currNode
+    } 
+  }
+
+  removeAt(idx) {
+    let nodeToRemove = this.getAt(idx);
+
+    if (!nodeToRemove) {
+      return null;
+    }
+
+    let nextNode = nodeToRemove.next;
+    let prevNode = this.getAt(idx - 1);
+
+    if (prevNode) {
+      prevNode.next = nextNode;
+    } else {
+      this.head = nextNode;
+    }
+  }
+
+  insertAt(data, idx) {
+    let currNode = this.getAt(idx);
+    let newNode = new Node(data, null);
+
+    if (!this.head && !this.tail) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else if (currNode === this.head || idx < 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else if (!currNode) {
+      this.tail.next = newNode;
+      newNode = this.tail;
+    } else {
+      let prevNode = this.getAt(idx - 1);
+
+      newNode.next = currNode;
+      prevNode.next = newNode;
+    }
+  }
+
+  forEach(fn) {
+    let currNode = this.head;
+
+    while (currNode) {
+      fn(currNode);
+      currNode = currNode.next;
+    }
+  }
+
+  *[Symbol.iterator]() {
+    let currNode = this.head;
+
+    while (currNode) {
+      yield currNode;
+      currNode = currNode.next;
+    }
   }
 }
 
